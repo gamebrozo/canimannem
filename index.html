@@ -4,115 +4,40 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Canım Annem</title>
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Montserrat:wght@300&display=swap" rel="stylesheet">
     <style>
-        body {
-            margin: 0; padding: 0; height: 100vh;
-            display: flex; justify-content: center; align-items: center;
-            background: linear-gradient(to bottom, #fffafa, #ffe4e1);
-            font-family: 'Montserrat', sans-serif;
-            overflow: hidden;
-        }
-
-        .container {
-            background: rgba(255, 255, 255, 0.9);
-            padding: 50px 30px;
-            border-radius: 40px;
-            box-shadow: 0 15px 35px rgba(219, 112, 147, 0.2);
-            text-align: center;
-            width: 85%;
-            max-width: 360px;
-            border: 1px solid white;
-        }
-
-        .heart {
-            font-size: 70px;
-            color: #db7093;
-            cursor: pointer;
-            animation: softBeat 2s infinite ease-in-out;
-            display: inline-block;
-        }
-
-        @keyframes softBeat {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.08); }
-        }
-
-        h1 {
-            font-family: 'Dancing Script', cursive;
-            color: #b03060;
-            font-size: 2.2rem;
-            margin: 15px 0;
-        }
-
-        #message {
-            color: #708090;
-            font-style: italic;
-            height: 50px;
-            margin: 20px 0;
-            font-size: 1.1rem;
-            transition: opacity 0.5s;
-        }
-
-        .play-btn {
-            background: #db7093;
-            color: white;
-            border: none;
-            padding: 15px 35px;
-            border-radius: 30px;
-            font-size: 14px;
-            letter-spacing: 1px;
-            cursor: pointer;
-            box-shadow: 0 5px 15px rgba(219, 112, 147, 0.3);
-            transition: 0.3s;
-        }
-
-        .play-btn:active { transform: scale(0.95); }
+        body { margin: 0; height: 100vh; display: flex; justify-content: center; align-items: center; background: #fff5f5; font-family: sans-serif; }
+        .card { background: white; padding: 40px; border-radius: 30px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); text-align: center; width: 80%; max-width: 300px; }
+        .heart { font-size: 60px; color: #ff4d4d; cursor: pointer; animation: beat 1.5s infinite; }
+        @keyframes beat { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.1); } }
+        .btn { background: #ff4d4d; color: white; border: none; padding: 12px 25px; border-radius: 20px; cursor: pointer; margin-top: 20px; font-weight: bold; }
     </style>
 </head>
 <body>
 
-<div class="container">
-    <div class="heart" onclick="toggleSurprise()">❤️</div>
+<div class="card">
+    <div class="heart" onclick="baslat()">❤️</div>
     <h1>Canım Annem</h1>
-    <p id="message">Sana olan sevgim bu notalarda gizli...</p>
+    <p id="t">Senin için bir şarkı seçtim...</p>
     
-    <!-- Tamamen slow, duygusal piyano ve keman -->
-    <audio id="bgMusic" loop>
-        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-8.mp3" type="audio/mpeg">
+    <!-- Senin yüklediğin dosya burada çalışacak -->
+    <audio id="m" loop>
+        <source src="muzik.mp3" type="audio/mpeg">
     </audio>
 
-    <button class="play-btn" onclick="toggleSurprise()" id="btnText">Şarkımızı Dinle 🎵</button>
+    <button class="btn" onclick="baslat()" id="b">Müziği Başlat 🎵</button>
 </div>
 
 <script>
-    const music = document.getElementById('bgMusic');
-    const btn = document.getElementById('btnText');
-    const msg = document.getElementById('message');
-
-    const notes = [
-        "Sen benim en kıymetlimsin...",
-        "Gülüşün her şeye değer.",
-        "İyi ki benim annemsin.",
-        "Seni her şeyden çok seviyorum ❤️"
-    ];
-    let i = 0;
-
-    function toggleSurprise() {
-        if (music.paused) {
-            music.play();
-            btn.innerText = "Durdur ⏸";
-            setInterval(() => {
-                msg.style.opacity = 0;
-                setTimeout(() => {
-                    msg.innerText = notes[i];
-                    msg.style.opacity = 1;
-                    i = (i + 1) % notes.length;
-                }, 500);
-            }, 4000);
+    function baslat() {
+        var m = document.getElementById('m');
+        var b = document.getElementById('b');
+        if (m.paused) {
+            m.play();
+            b.innerText = "Durdur";
+            document.getElementById('t').innerText = "Seni Çok Seviyorum!";
         } else {
-            music.pause();
-            btn.innerText = "Şarkımızı Dinle 🎵";
+            m.pause();
+            b.innerText = "Müziği Başlat 🎵";
         }
     }
 </script>
