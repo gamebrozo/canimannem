@@ -5,39 +5,58 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Canım Annem</title>
     <style>
-        body { margin: 0; height: 100vh; display: flex; justify-content: center; align-items: center; background: #fff5f5; font-family: sans-serif; }
-        .card { background: white; padding: 40px; border-radius: 30px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); text-align: center; width: 80%; max-width: 300px; }
-        .heart { font-size: 60px; color: #ff4d4d; cursor: pointer; animation: beat 1.5s infinite; }
-        @keyframes beat { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.1); } }
-        .btn { background: #ff4d4d; color: white; border: none; padding: 12px 25px; border-radius: 20px; cursor: pointer; margin-top: 20px; font-weight: bold; }
+        body {
+            margin: 0; height: 100vh; display: flex; justify-content: center;
+            align-items: center; background: #fff5f5; font-family: sans-serif;
+        }
+        .container {
+            background: white; padding: 40px; border-radius: 30px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1); text-align: center;
+            width: 85%; max-width: 320px;
+        }
+        .heart {
+            font-size: 70px; color: #ff4d4d; cursor: pointer;
+            animation: beat 1.5s infinite;
+        }
+        @keyframes beat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+        h1 { color: #333; margin: 20px 0; font-size: 24px; }
+        .btn {
+            background: #ff4d4d; color: white; border: none;
+            padding: 15px 30px; border-radius: 25px; cursor: pointer;
+            font-weight: bold; font-size: 16px; transition: 0.3s;
+        }
     </style>
 </head>
 <body>
 
-<div class="card">
-    <div class="heart" onclick="baslat()">❤️</div>
+<div class="container">
+    <div class="heart" onclick="calistir()">❤️</div>
     <h1>Canım Annem</h1>
-    <p id="t">Senin için bir şarkı seçtim...</p>
+    <p id="mesaj">Senin için bir şarkı seçtim...</p>
     
-    <!-- Senin yüklediğin dosya burada çalışacak -->
-    <audio id="m" loop>
+    <audio id="ses" loop>
         <source src="muzik.mp3" type="audio/mpeg">
     </audio>
 
-    <button class="btn" onclick="baslat()" id="b">Müziği Başlat 🎵</button>
+    <button class="btn" onclick="calistir()" id="buton">Sürprizi Başlat 🎵</button>
 </div>
 
 <script>
-    function baslat() {
-        var m = document.getElementById('m');
-        var b = document.getElementById('b');
-        if (m.paused) {
-            m.play();
-            b.innerText = "Durdur";
-            document.getElementById('t').innerText = "Seni Çok Seviyorum!";
+    function calistir() {
+        var s = document.getElementById('ses');
+        var b = document.getElementById('buton');
+        var m = document.getElementById('mesaj');
+        
+        if (s.paused) {
+            s.play();
+            b.innerText = "Durdur ⏸";
+            m.innerText = "Seni Çok Seviyorum!";
         } else {
-            m.pause();
-            b.innerText = "Müziği Başlat 🎵";
+            s.pause();
+            b.innerText = "Sürprizi Başlat 🎵";
         }
     }
 </script>
