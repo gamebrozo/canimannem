@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canım Annem</title>
+    <style>
+        body { margin: 0; height: 100vh; display: flex; justify-content: center; align-items: center; background: #fff5f5; font-family: sans-serif; text-align: center; }
+        .card { background: white; padding: 40px; border-radius: 30px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); width: 80%; max-width: 300px; }
+        .btn { background: #ff4d4d; color: white; border: none; padding: 15px 30px; border-radius: 25px; cursor: pointer; font-weight: bold; margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h1>❤️ Canım Annem ❤️</h1>
+        <p>Sürprizi duymak için butona bas!</p>
+        
+        <audio id="mAudio" loop>
+            <source src="muzik.mp3" type="audio/mpeg">
+            <source src="muzik" type="audio/mpeg">
+        </audio>
+
+        <button class="btn" onclick="cal()">Müziği Başlat 🎵</button>
+    </div>
+
+    <script>
+        function cal() {
+            var a = document.getElementById('mAudio');
+            a.play().then(() => {
+                alert("Müzik başlıyor...");
+            }).catch(e => {
+                alert("Hata: Dosya bulunamadı veya yüklenemedi. Lütfen dosya adını kontrol et.");
+            });
+        }
+    </script>
+</body>
+</html>
